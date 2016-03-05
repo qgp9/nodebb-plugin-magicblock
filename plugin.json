@@ -1,0 +1,13 @@
+{
+	"id": "nodebb-plugin-magicblock",
+	"name": "NodeBB MagicBlock Plugin",
+	"description": "NodeBB Plugin for macros, format, embeding",
+	"url": "https://github.com/qgp9/nodebb-plugin-magicblock.git",
+	"library": "./library.js",
+	"hooks": [
+		{ "hook": "filter:parse.post", "method": "parse" },
+		{ "hook": "filter:parse.signature", "method": "parse" },
+		{ "hook": "filter:parse.raw", "method": "parse" }
+	],
+  "templates": "./public/templates"
+}

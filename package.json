@@ -1,0 +1,48 @@
+{
+  "name": "nodebb-plugin-magicblock",
+  "version": "0.1.0",
+  "nbbpm": {
+    "compatibility": "^1.0.0"
+  },
+  "description": "NodeBB Plugin for macros, format, embeding",
+  "main": "library.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/qgp9/nodebb-plugin-magicblock.git"
+  },
+  "keywords": [
+    "nodebb",
+    "magicblock",
+    "format",
+    "macros",
+    "embeding"
+  ],
+  "license": "MIT",
+  "dependencies": {},
+  "homepage": "https://github.com/qgp9/nodebb-plugin-magicblock",
+  "maintainers": [
+    {
+      "name": "qgp9",
+      "email": "qgp@skepties.net"
+    }
+  ],
+  "directories": {},
+  "gitHead": "",
+  "bugs": {
+    "url": "https://github.com/qgp9/nodebb-plugin-magicblock/issues"
+  },
+  "_id": "nodebb-pluginmagicblock@0.1.0",
+  "scripts": {},
+  "_shasum": "",
+  "_from": "nodebb-plugin-magicblock@0.1.0",
+  "_npmVersion": "3.6.0",
+  "_nodeVersion": "5.6.0",
+  "_npmUser": {
+    "name": "qgp9",
+    "email": "qgp@skepties.net"
+  },
+  "dist": {
+    "shasum": "",
+    "tarball": ""
+  }
+}
