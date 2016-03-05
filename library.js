@@ -15,6 +15,10 @@
       blockClose: '}}', //
       blockOpenRegx: '\{\{',
       blockCloseRegx: '\}\}',
+      allowedAttribute: {
+        '*': { 'class':['*'], 'style':['*']  },
+        'a': { 'role':['button'] }
+      },
       dummy: 1
     },
     //===========================================
@@ -85,7 +89,20 @@
     //===========================================
     magic: function( data ){
       // if it's link ( for only first <a> tag )
-      if( data.match(/^<a[^>]+href=/) ){
+      var matched;
+      if( matched = data.match(/^<a[^>]+href="(.*?)".*?>(.*?)<\/a>/ ) ){
+        var url = matched[1];
+        var body = matched[2];
+        // Images, TODO chance to give a format( border, wraper... )?
+        if( matched = url.match(/.*?\/\/imgur.com\/a\/(\w+)/) ){
+          var imgur_id=matched[1];
+          return `<blockquote class="imgur-embed-pub" lang="en" data-id="a/${imgur_id}"><a href="//imgur.com/a/${imgur_id}">View post on imgur.com</a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>`
+        }
+        if( matched = url.match(/([^\/\s]+(?:jpg|svg|png|gif))$/i) ){
+          var filename=matched[1] || '';
+          body = body.replace(/["']/g,''); // Strip quote from body/title
+          return `<img src="${url}" alter="${filename}" title="${body}">`;
+        }
         // use iframely. TODO custom for well-known format?
         return this.addAttrs( data, { 'classAttr': ['iframely'] } );
       }
