@@ -4,7 +4,7 @@
   //var	meta = module.parent.require('./meta');
 
   var codeRegex = /(?:<pre>.*?<\/pre>|<code>.*?<\/code>)/g,
-  magicBlockRegex = /\{\{(.*?)\}\}/,
+  magicBlockRegex = /\{\{(.*?)\}\}/;
 
   //===========================================
   //  MagicBlock.macros
@@ -28,7 +28,7 @@
       //{{BUTTON(info,lg,link) http://example.com)}}
       PANEL:  { 
         1: '<div class="panel panel-<1>"> <div class="panel-heading"><2></div><div class="panel-body">__BODY__</div></div>',
-      }
+      },
       //{{PANEL(info, title) contents}}
       dummy: 0
     },
