@@ -1,6 +1,6 @@
 {
   "name": "nodebb-plugin-magicblock",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "nbbpm": {
     "compatibility": "^1.0.0"
   },
@@ -31,18 +31,4 @@
   "bugs": {
     "url": "https://github.com/qgp9/nodebb-plugin-magicblock/issues"
   },
-  "_id": "nodebb-pluginmagicblock@0.1.0",
-  "scripts": {},
-  "_shasum": "",
-  "_from": "nodebb-plugin-magicblock@0.1.0",
-  "_npmVersion": "3.6.0",
-  "_nodeVersion": "5.6.0",
-  "_npmUser": {
-    "name": "qgp9",
-    "email": "qgp@skepties.net"
-  },
-  "dist": {
-    "shasum": "",
-    "tarball": ""
-  }
 }
