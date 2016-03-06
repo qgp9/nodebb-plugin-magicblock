@@ -6,13 +6,24 @@
 				Adjust these settings. You can then retrieve these settings in code via:
 				<code>meta.settings.get('magicblock');</code>
 			</p>
+			<fieldset class="form-group form-inline">
+				<label for="blockopener">Block opener</label>
+				<input type="text" id="blockopener" name="blockopener" title="Block opener" class="form-control" placeholder="{{">
+				<label for="blockcloser">Block closer</label>
+				<input type="text" id="blockcloser" name="blockcloser" title="Block closer" class="form-control" placeholder="}}">
+			</fieldset>
 			<div class="form-group">
-				<label for="setting-1">Setting 1</label>
-				<input type="text" id="setting-1" name="setting-1" title="Setting 1" class="form-control" placeholder="Setting 1">
+				<label for="allowedAttribute">Allowed attributes ( JSON )</label>
+        <textarea class="form-control" id="allowedAttribute" name="allowedAttribute" rows="5" placeholder="{\t'*': { 'class':['*'], 'style':['*']  },
+                          'a': { 'role':['button'] }
+                           }"></textarea>
 			</div>
 			<div class="form-group">
-				<label for="setting-2">Setting 2</label>
-				<input type="text" id="setting-2" name="setting-2" title="Setting 2" class="form-control" placeholder="Setting 2">
+				<label for="macroTemplates">Macro Template ( JSON )</label>
+        <textarea class="form-control" id="macroTemplates" name="macroTemplates" rows="5" placeholder="'*': { 'class':['*'], 'style':['*']  },
+'a': { 'role':['button'] }"
+        
+        ></textarea>
 			</div>
 		</div>
 	</div>

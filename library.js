@@ -1,16 +1,15 @@
-(function (module) {
   'use strict';
 
-  //var	meta = module.parent.require('./meta');
-  var controllers = require('./lib/controllers');
+  //let	meta = module.parent.require('./meta');
+  let controllers = require('./lib/controllers');
 
-  var codeRegex = /(?:<pre>.*?<\/pre>|<code>.*?<\/code>)/g,
+  let codeRegex = /(?:<pre>.*?<\/pre>|<code>.*?<\/code>)/g,
   magicBlockRegex = /\{\{(.*?)\}\}/;
 
   //===========================================
   //  MagicBlock.macros
   //===========================================
-  var MagicBlock = {
+  let MagicBlock = {
     options: { // not implemented yet TODO
       blockOpen: '{{', //}}{{ ( dummy )
       blockClose: '}}', //
@@ -23,7 +22,7 @@
       dummy: 1
     },
     init: function(params, callback){
-      var router = params.router,
+      let router = params.router,
       hostMiddleware = params.middleware,
       hostControllers = params.controllers;
 
@@ -68,8 +67,8 @@
     // MagicBlock.parseAttrs 
     //===========================================
     parseAttrs: function(attrRaw){ 
-      var classAttr = [];
-      var colorAttr = [];
+      let classAttr = [];
+      let colorAttr = [];
       attrRaw.replace( /([\.#])([\w\-]+)/g, function( match, $1,$2 ){
         if( $1 == '.' ){
           classAttr.push( $2 );
@@ -89,7 +88,7 @@
     // MagicBlock.addAttrs 
     //===========================================
     addAttrs: function( contents, attrs ){ 
-      var matched;
+      let matched;
       // ADD Class
       if( attrs.classAttr && attrs.classAttr.length > 0 ){
         if( matched = contents.match( /(^<[^>]+class=".*?)(".*)/ )){
@@ -114,17 +113,17 @@
     //===========================================
     magic: function( data ){
       // if it's link ( for only first <a> tag )
-      var matched;
+      let matched;
       if( matched = data.match(/^<a[^>]+href="(.*?)".*?>(.*?)<\/a>/ ) ){
-        var url = matched[1];
-        var body = matched[2];
+        let url = matched[1];
+        let body = matched[2];
         // Images, TODO chance to give a format( border, wraper... )?
         if( matched = url.match(/.*?\/\/imgur.com\/a\/(\w+)/) ){
-          var imgur_id=matched[1];
+          let imgur_id=matched[1];
           return `<blockquote class="imgur-embed-pub" lang="en" data-id="a/${imgur_id}"><a href="//imgur.com/a/${imgur_id}">View post on imgur.com</a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>`
         }
         if( matched = url.match(/([^\/\s]+(?:jpg|svg|png|gif))$/i) ){
-          var filename=matched[1] || '';
+          let filename=matched[1] || '';
           body = body.replace(/["']/g,''); // Strip quote from body/title
             return `<img src="${url}" alter="${filename}" title="${body}">`;
         }
@@ -140,16 +139,16 @@
     parseBlock: function ( data ){ 
       if( !data ) return '';
       // if there is macroname ( no space between begin of block and name
-      var macroName = data.match(/^\w+/);
+      let macroName = data.match(/^\w+/);
       if( macroName && this.macros[macroName[0]] ){
 
         //TODO check existance of the macros and if it's string or function
         return this.macros[macroName[0]](data);
       }
       // If begin with attrs string ( .class color ), NO preceding space
-      var matched = data.match( /^([\.#]\S+)(\s+)(.*)/ );
+      let matched = data.match( /^([\.#]\S+)(\s+)(.*)/ );
       if( matched ){ 
-        var attrs = this.parseAttrs( matched[1]);
+        let attrs = this.parseAttrs( matched[1]);
         if( matched.length < 4 ) matched.push(['','']);
         if( matched[3] && matched[3].match( /^</ ) && !matched[1].match(/:$/)){
           return this.addAttrs( matched[3], attrs );
@@ -170,21 +169,21 @@
     //===========================================
     parserContents: function(data) {
       // keep <code>...</code>
-      var codeTags = [];
+      let codeTags = [];
       data = data.replace(codeRegex, function (match) {
         codeTags.push(match);
         return '___CODE___';
       });
 
       // Extract blocks and call MagicBlock.parseBlock
-      var matchList = [];
-      var result = '';
-      var depth = 0;
-      var flag = -1; // 0=open, 1=close 
-      var match1 = data.split( /(\{\{|\}\})/ );
-      var i=0;
+      let matchList = [];
+      let result = '';
+      let depth = 0;
+      let flag = -1; // 0=open, 1=close 
+      let match1 = data.split( /(\{\{|\}\})/ );
+      let i=0;
       for( i=0;i<match1.length;i++ ){
-        var s = match1 [i] ;
+        let s = match1 [i] ;
         if( s == '{{' ){
           flag = 0;
         }else if( s == '}}' ){
@@ -195,7 +194,7 @@
             matchList.push( s );
           }else{
             if( flag == 1 ) { depth--; }
-            var tmp_result = '';
+            let tmp_result = '';
             if( depth < 0 ){
               result += s;
             }else if( depth == 0 ){
@@ -239,4 +238,3 @@
   //===========================================
   module.exports = MagicBlock;
 
-})(module);

@@ -9,5 +9,10 @@ NodeBB Plugin for macros, format, embeding.
 
 `{{.class1.class2#color1#color2 BODY }}` 
 
+## Installation
+```
+npm install nodebb-plugin-magicblock
+```
+
 ## Acknowledge
 * This plugin is based on [nodebb-mega-colors](https://github.com/MegaGM/nodebb-plugin-mega-colors)
