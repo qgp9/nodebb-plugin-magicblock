@@ -120,12 +120,12 @@
         // Images, TODO chance to give a format( border, wraper... )?
         if( matched = url.match(/.*?\/\/imgur.com\/a\/(\w+)/) ){
           let imgur_id=matched[1];
-          return `<blockquote class="imgur-embed-pub" lang="en" data-id="a/${imgur_id}"><a href="//imgur.com/a/${imgur_id}">View post on imgur.com</a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>`
+          return '<blockquote class="imgur-embed-pub" lang="en" data-id="a/'+imgur_id+'"><a href="//imgur.com/a/'+imgur_id+'">View post on imgur.com</a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>'
         }
         if( matched = url.match(/([^\/\s]+(?:jpg|svg|png|gif))$/i) ){
           let filename=matched[1] || '';
           body = body.replace(/["']/g,''); // Strip quote from body/title
-            return `<img src="${url}" alter="${filename}" title="${body}">`;
+            return '<img src="'+url+'" alter="'+filename+'" title="'+body+'">';
         }
         // use iframely. TODO custom for well-known format?
         return this.addAttrs( data, { 'classAttr': ['iframely'] } );
