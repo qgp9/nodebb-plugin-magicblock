@@ -2,6 +2,7 @@
   'use strict';
 
   //var	meta = module.parent.require('./meta');
+  var controllers = require('./lib/controllers');
 
   var codeRegex = /(?:<pre>.*?<\/pre>|<code>.*?<\/code>)/g,
   magicBlockRegex = /\{\{(.*?)\}\}/;
@@ -20,6 +21,30 @@
         'a': { 'role':['button'] }
       },
       dummy: 1
+    },
+    init: function(params, callback){
+      var router = params.router,
+      hostMiddleware = params.middleware,
+      hostControllers = params.controllers;
+
+      // We create two routes for every view. One API call, and the actual route itself.
+      // Just add the buildHeader middleware to your route and NodeBB will take care of everything for you.
+
+      router.get('/admin/plugins/magicblock', hostMiddleware.admin.buildHeader, controllers.renderAdminPage);
+      router.get('/api/admin/plugins/magicblock', controllers.renderAdminPage);
+
+      callback();
+
+    },
+
+    addAdminNavigation: function(header, callback) {
+      header.plugins.push({
+        route: '/plugins/magicblock',
+        icon: 'fa-tint',
+        name: 'MagicBlock'
+      });
+
+      callback(null, header);
     },
     //===========================================
     //  MagicBlock.macros
@@ -101,7 +126,7 @@
         if( matched = url.match(/([^\/\s]+(?:jpg|svg|png|gif))$/i) ){
           var filename=matched[1] || '';
           body = body.replace(/["']/g,''); // Strip quote from body/title
-          return `<img src="${url}" alter="${filename}" title="${body}">`;
+            return `<img src="${url}" alter="${filename}" title="${body}">`;
         }
         // use iframely. TODO custom for well-known format?
         return this.addAttrs( data, { 'classAttr': ['iframely'] } );
