@@ -7,9 +7,9 @@
   magicBlockRegex = /\{\{(.*?)\}\}/;
 
   //===========================================
-  //  MagicBlock.macros
+  //  magicBlock.macros
   //===========================================
-  let MagicBlock = {
+  let magicBlock = {
     options: { // not implemented yet TODO
       blockOpen: '{{', //}}{{ ( dummy )
       blockClose: '}}', //
@@ -198,9 +198,9 @@
             if( depth < 0 ){
               result += s;
             }else if( depth == 0 ){
-              result += MagicBlock.parseBlock( matchList.pop() ) + s;
+              result += this.parseBlock( matchList.pop() ) + s;
             }else{ // depth > 0
-              tmp_result = MagicBlock.parseBlock( matchList.pop() );
+              tmp_result = this.parseBlock( matchList.pop() );
               matchList[matchList.length-1] += tmp_result + s;
             }
           }
@@ -219,13 +219,13 @@
     parse: function (data, callback) {
       if (data && 'string' === typeof data) {
         // filter:parse.raw
-        data = MagicBlock.parserContents(data);
+        data = magicBlock.parserContents(data);
       } else if (data.postData && data.postData.content && data.postData.content.match(magicBlockRegex)) {
         // filter:parse.post
-        data.postData.content = MagicBlock.parserContents(data.postData.content);
+        data.postData.content = magicBlock.parserContents(data.postData.content);
       } else if (data.userData && data.userData.signature && data.userData.signature.match(magicBlockRegex)) {
         // filter:parse.signature
-        data.userData.signature = MagicBlock.parserContents(data.userData.signature);
+        data.userData.signature = magicBlock.parserContents(data.userData.signature);
       }
       callback(null, data);
     },
@@ -236,5 +236,6 @@
   //===========================================
   //  Export MagicBlock
   //===========================================
-  module.exports = MagicBlock;
+  //module.exports = magicBlock;
+  exports.parse = magicBlock.parse;
 
