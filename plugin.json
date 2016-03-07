@@ -7,9 +7,9 @@
 	"hooks": [
     { "hook": "static:app.load", "method": "init" },
     { "hook": "filter:admin.header.build", "method": "addAdminNavigation" },
-		{ "hook": "filter:parse.post", "method": "parse" },
-		{ "hook": "filter:parse.signature", "method": "parse" },
-		{ "hook": "filter:parse.raw", "method": "parse" }
+		{ "hook": "filter:parse.post", "method": "parsePost" },
+		{ "hook": "filter:parse.signature", "method": "parseSignature" },
+		{ "hook": "filter:parse.raw", "method": "parseRaw" }
 	],
 	"staticDirs": {
 		"static": "./static"
