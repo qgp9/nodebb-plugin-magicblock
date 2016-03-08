@@ -6,9 +6,20 @@ NodeBB Plugin for macros, format, embeding.
 
 ## Usage
 
+### Magic
+```
+{{ Any Link }}
+```
+* If you put any link in MagicBlock then MagicBlock will take care How show it With full customization.
+* image, imgur galery are built in, and you can add more or override them.
+* An nodebb-plugin-iframely is just fantastic but unfortunately it convert every naked links without control, and it's too much.
+I would like to control this with `{{ }}` but no way before modify nodebb-plugin-iframely ( or just use client-side script ).
+[Actually there is a modified version](https://github.com/qgp9/nodebb-plugin-iframely) but not in npm.
+
 ### AttrString
 `{{.class1.class2#color1#color2 BODY }}` 
 * When a block begin with AttrString( begin with `.` or `#` and before a first white space )
+
 #### Coloring
 * A first color is for forground , a second is for backgoround color.
 * Also rgb codes are possible. ( #eee or #e1e1e1 )
@@ -16,6 +27,8 @@ NodeBB Plugin for macros, format, embeding.
 {{#red This is red letters}}
 {{#red#green This is red letters on green background}}
 ```
+![Coloring](http://i.imgur.com/awpTBc0.jpg)
+
 ### Class
 ```
 {{.class1 [link](http://example.com)}}` will become `<a href="http://example.com" class="class1">link</a>
@@ -34,9 +47,20 @@ NodeBB Plugin for macros, format, embeding.
     * With `{{ http://a.com  }}`, what actually MagicBlock will see is `{{ <a href="http://a.com">a.com</a>}}`
   * If begins of BODY is not a html tag, MagicBlock will wrap BODY with `<span>` 
 ```
-{{.cls1#red:: Any text or link}} will become <div class="cls" style="color:red;">Any text or link</div>
-{{.cls1#red: Any text or link}} will become <span class="cls" style="color:red;">Any text or link</span>
+{{.cls1#red ![txt](url)}} will become <img src="url" alt="txt" class="cls" style="color:red;">
+{{.cls1#red  text}} will become <span class="cls" style="color:red;">text</span>
 ```
+### Macros
+* A forum admin can add custom macros via admin UI
+* examples ( built in )
+```
+{{br}} -> <br/>
+{{ ALERT(info): This Info Box }}
+{{ ALERT: This is default alert Box }}
+{{ PANEL(success):  Body Only Panel }}
+{{ PANEL(warning, This is title) Panel with title }}
+```
+![Macros](http://i.imgur.com/e64NYuT.jpg)
 
 ## Installation
 ```
@@ -44,10 +68,17 @@ npm install nodebb-plugin-magicblock
 ```
 
 ## Configuratoin
-
+Currently single YAML string is only supported.
+* In macros, a number in `(..)` means number of arguments. Arguments will replace each `<<1>> <<2>>`.
+  * BODY of block will replace `<<BODY>>`
+* Currently, only `<a>` tag can go thourgh magic. Others will come later ( but what will be useful after `<a> and <img>` ? ) 
+* If you don't want macros or magicTagA then just `false` will be better then empty array or dictionary
+  * `macros: false` 
 ### Example
 ```
+---
 attrStrAllowClass: false
+attrStrAllowColor: false
 attrStrAllowColon: true
 attrStrArrowTwoColon: false
 macros:
