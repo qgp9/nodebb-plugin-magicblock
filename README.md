@@ -18,7 +18,7 @@ I would like to control this with `{{ }}` but no way before modify nodebb-plugin
 
 ### AttrString
 `{{.class1.class2#color1#color2 BODY }}` 
-* When a block begin with AttrString( begin with `.` or `#` and before a first white space )
+* When a block begins with AttrString( begin with `.` or `#` and before a first white space )
 
 #### Coloring
 * A first color is for forground , a second is for backgoround color.
