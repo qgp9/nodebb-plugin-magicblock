@@ -1,13 +1,15 @@
 'use strict';
 
 // NodeBB modules
-let controllers = require('./lib/controllers');
+let	meta = module.parent.require('./meta');
 
 // Plugin modules
+let controllers = require('./lib/controllers');
 let adminNavigation = require( './lib/adminNavigation.js' );
 let MagicBlock      = require( './lib/magicBlock/index' );
 
 let magicBlock;
+var magicBlockOpts = {} ;
 
 /* ======================== Exports  ========================*/
 exports.init = init;
@@ -21,13 +23,18 @@ exports.parseRaw = parseRaw;
 function init (params, cb) {
   let router = params.router;
   let hostMiddleware = params.middleware;
+  let options = {};
   // let hostControllers = params.controllers;
 
   router.get('/admin/plugins/magicblock', hostMiddleware.admin.buildHeader, controllers.renderAdminPage);
   router.get('/api/admin/plugins/magicblock', controllers.renderAdminPage);
 
   magicBlock = new MagicBlock();
-
+  meta.settings.get('magicblock', function(err, opts){
+    for( let field in opts ){
+      options[field] = opts[field];
+    }
+  });
   cb()
 }
 
