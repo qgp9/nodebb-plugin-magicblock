@@ -37,17 +37,16 @@ function init (params, cb) {
   meta.settings.get('magicblock', function(err, opts){
     if( opts.hasOwnProperty('fullOptions') && typeof opts.fullOptions === 'string' ){
       let fullOptions = opts.fullOptions;
-        console.log( fullOptions );
+      //console.log( fullOptions );
       try {
         storedOptions = jsYAML.safeLoad(fullOptions);
       } catch (e) {
         console.error(e);
       }
-        console.log( fullOptions );
-        console.log( typeof fullOptions );
+      //console.log( fullOptions );
+      //console.log( typeof fullOptions );
     }
     // TODO: for( let field in opts ){ options[field] = opts[field]; }
-    // TODO: if options on DB is empty, fill it with defaults
     magicBlockOpts = options.build( storedOptions, defaults.value );
     magicBlock = new MagicBlock(magicBlockOpts);
   });

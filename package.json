@@ -25,5 +25,8 @@
   "bugs": {
     "url": "https://github.com/qgp9/nodebb-plugin-magicblock/issues"
   },
-  "homepage": "https://github.com/qgp9/nodebb-plugin-magicblock#readme"
+  "homepage": "https://github.com/qgp9/nodebb-plugin-magicblock#readme",
+  "dependencies": {
+    "js-yaml": "^3.5.3"
+  }
 }
