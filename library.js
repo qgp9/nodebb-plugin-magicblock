@@ -1,15 +1,19 @@
 'use strict';
 
+let jsYAML = require('js-yaml');
 // NodeBB modules
 let	meta = module.parent.require('./meta');
 
 // Plugin modules
 let controllers = require('./lib/controllers');
-let adminNavigation = require( './lib/adminNavigation.js' );
+let adminNavigation = require( './lib/adminNavigation' );
 let MagicBlock      = require( './lib/magicBlock/index' );
+let options         = require( './lib/magicBlock/options' );
+let defaults        = require( './lib/defaults' );
 
-let magicBlock;
 var magicBlockOpts = {} ;
+let magicBlock;
+
 
 /* ======================== Exports  ========================*/
 exports.init = init;
@@ -23,19 +27,32 @@ exports.parseRaw = parseRaw;
 function init (params, cb) {
   let router = params.router;
   let hostMiddleware = params.middleware;
-  let options = {};
   // let hostControllers = params.controllers;
 
   router.get('/admin/plugins/magicblock', hostMiddleware.admin.buildHeader, controllers.renderAdminPage);
   router.get('/api/admin/plugins/magicblock', controllers.renderAdminPage);
 
-  magicBlock = new MagicBlock();
+
+  let storedOptions;
   meta.settings.get('magicblock', function(err, opts){
-    for( let field in opts ){
-      options[field] = opts[field];
+    if( opts.hasOwnProperty('fullOptions') && typeof opts.fullOptions === 'string' ){
+      let fullOptions = opts.fullOptions;
+        console.log( fullOptions );
+      try {
+        storedOptions = jsYAML.safeLoad(fullOptions);
+      } catch (e) {
+        console.error(e);
+      }
+        console.log( fullOptions );
+        console.log( typeof fullOptions );
     }
+    // TODO: for( let field in opts ){ options[field] = opts[field]; }
+    // TODO: if options on DB is empty, fill it with defaults
+    magicBlockOpts = options.build( storedOptions, defaults.value );
+    magicBlock = new MagicBlock(magicBlockOpts);
   });
-  cb()
+
+  cb();
 }
 
 
