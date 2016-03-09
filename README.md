@@ -66,7 +66,7 @@ I would like to control this with `{{ }}` but no way before modify nodebb-plugin
 {{ ALERT(info): This Info Box }}
 {{ ALERT: This is default alert Box }}
 {{ PANEL(success):  Body Only Panel }}
-{{ PANEL(warning, This is title) Panel with title }}
+{{ PANEL(warning, This is title): Panel with title }}
 ```
 ![Macros](http://i.imgur.com/e64NYuT.jpg)
 
