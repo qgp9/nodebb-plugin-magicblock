@@ -95,7 +95,7 @@ Currently single YAML string is only supported.
 attrStrAllowClass: false
 attrStrAllowColor: true
 attrStrAllowColon: true
-attrStrArrowTwoColon: false
+attrStrAllowTwoColon: false
 macros:
   br(0): '<br/>'
   ALERT(1): '<div class="alert alert-<<1>>"><<BODY>></div>'

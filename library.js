@@ -7,8 +7,8 @@ let	meta = module.parent.require('./meta');
 // Plugin modules
 let controllers = require('./lib/controllers');
 let adminNavigation = require( './lib/adminNavigation' );
-let MagicBlock      = require( './lib/magicBlock/index' );
-let options         = require( './lib/magicBlock/options' );
+let MagicBlock      = require( './lib/magicblock/index' );
+let options         = require( './lib/magicblock/options' );
 let defaults        = require( './lib/defaults' );
 
 var magicBlockOpts = {} ;
