@@ -67,7 +67,7 @@ function init (params, cb) {
 
 function parseRaw (data, cb) {
   if (data && typeof data === 'string') {
-    if( hackIframely )data = hackIframelyBefore( con ); // For hackIframely
+    if( hackIframely )data = hackIframelyBefore( data ); // For hackIframely
     data = magicBlock.parse(data);
   }
   cb(null, data);
