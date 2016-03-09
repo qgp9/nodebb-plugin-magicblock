@@ -9,9 +9,11 @@ NodeBB Plugin for macros, format, embeding.
 ### Magic
 ```
 {{ Any Link }}
+{{ http://imgur.com/gallery/BxHKr }}
 ```
+![Imgur gallery](http://i.imgur.com/HxvheyR.jpg)
 * If you put any link in MagicBlock then MagicBlock will take care How show it With full customization.
-* image, imgur galery are built in, and you can add more or override them.
+* image, imgur gallery are built in, and you can add more or override them.
 * An nodebb-plugin-iframely is just fantastic but unfortunately it convert every naked links without control, and it's too much.
 I would like to control this with `{{ }}` but no way before modify nodebb-plugin-iframely ( or just use client-side script ).
 [Actually there is a modified version](https://github.com/qgp9/nodebb-plugin-iframely) but not in npm.
@@ -64,7 +66,7 @@ I would like to control this with `{{ }}` but no way before modify nodebb-plugin
 {{ ALERT(info): This Info Box }}
 {{ ALERT: This is default alert Box }}
 {{ PANEL(success):  Body Only Panel }}
-{{ PANEL(warning, This is title) Panel with title }}
+{{ PANEL(warning, This is title): Panel with title }}
 ```
 ![Macros](http://i.imgur.com/e64NYuT.jpg)
 
