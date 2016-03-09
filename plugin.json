@@ -7,22 +7,25 @@
 	"hooks": [
     { "hook": "static:app.load", "method": "init" },
     { "hook": "filter:admin.header.build", "method": "addAdminNavigation" },
-		{ "hook": "filter:parse.post", "method": "parsePost" },
-		{ "hook": "filter:parse.signature", "method": "parseSignature" },
-		{ "hook": "filter:parse.raw", "method": "parseRaw" }
-	],
-	"staticDirs": {
-		"static": "./static"
-	},
-	"less": [
-		"static/style.less"
-	],
-	"scripts": [
-		"static/lib/main.js",
-		"static/lib/admin.js"
-	],
-	"acpScripts": [
-		"static/lib/admin.js"
-	],
-	"templates": "static/templates"
+		{ "hook": "filter:parse.post", "method": "parsePost", "priority":8 },
+		{ "hook": "filter:parse.signature", "method": "parseSignature" , "priority":8},
+		{ "hook": "filter:parse.raw", "method": "parseRaw" , "priority":8},
+
+    { "hook": "filter:parse.raw", "method": "afterIframelyRaw" , "priority":12},
+    { "hook": "filter:parse.post", "method": "afterIframelypost" , "priority":12}
+
+  ],
+  "staticDirs": {
+    "static": "./static"
+  },
+  "less": [
+    "static/style.less"
+  ],
+  "scripts": [
+    "static/lib/main.js"
+  ],
+  "acpScripts": [
+    "static/lib/admin.js"
+  ],
+  "templates": "static/templates"
 }

@@ -1,8 +1,8 @@
 {
   "name": "nodebb-plugin-magicblock",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "nbbpm": {
-    "compatibility": "^1.0.0"
+    "compatibility": "^1.0.0 || 0.9.4 - 1.0.0"
   },
   "description": "NodeBB Plugin for macros, format, embeding.",
   "main": "library.js",

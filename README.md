@@ -4,6 +4,9 @@ NodeBB Plugin for macros, format, embeding.
 
 * Discussion and examples at [NodeBB Forum](https://community.nodebb.org/topic/8098/some-ideas-and-on-going-development-of-new-plugin-called-magicblock)
 
+## Updates
+* v0.1.7 : support hackIframely. One can enable nodebb-plugin-iframely only in `{{..}}` without modifications of the iframely plugin.
+
 ## Usage
 
 ### Magic
@@ -14,9 +17,16 @@ NodeBB Plugin for macros, format, embeding.
 ![Imgur gallery](http://i.imgur.com/HxvheyR.jpg)
 * If you put any link in MagicBlock then MagicBlock will take care How show it With full customization.
 * image, imgur gallery are built in, and you can add more or override them.
-* An nodebb-plugin-iframely is just fantastic but unfortunately it convert every naked links without control, and it's too much.
-I would like to control this with `{{ }}` but no way before modify nodebb-plugin-iframely ( or just use client-side script ).
-[Actually there is a modified version](https://github.com/qgp9/nodebb-plugin-iframely) but not in npm.
+* Support iframely( Enable iframely only in `{{..}}` )  We have three options.
+  1.[ With modified iframely plugin](https://github.com/qgp9/nodebb-plugin-iframely)  
+    * set `magicTagADefaultClass: [ iframely ]` in MagicBlock admin UI
+    * remove original iframely plugin
+    * install the modified iframely plugin manualy from github.
+    * set `iframely Class` to `iframely` in modified iframely admin UI
+  2. Client side load : this doesn't implemented yet until somebody wants :)
+  3. With an official iframely plugin. ( **RECOMENDED** )
+    * set `hackIframely: true` in YAML. ( see example of configuratons )
+    * That's it. As see from the name( hackIframely ), it's somewhat tricky but will be stable for a while.
 
 ### AttrString
 `{{.class1.class2#color1#color2 BODY }}` 
@@ -94,7 +104,7 @@ Currently single YAML string is only supported.
 ---
 attrStrAllowClass: false
 attrStrAllowColor: true
-attrStrAllowColon: true
+attrStrAllowColon: false
 attrStrAllowTwoColon: false
 macros:
   br(0): '<br/>'
@@ -104,10 +114,11 @@ macros:
   PANEL(2): '<div class="panel panel-<<1>>"><div class="panel-heading"><<2>></div><div class="panel-body"><<BODY>></div></div>'
 magicTagA:
   - [ '.*(jpg|png|gif|svg)$' , true , '<img src="<<URL>>">' ]
-  - - '^(?:http:)?\/\/imgur.com/a/(\w+)'
+  - - '^(?:http:)?//imgur.com/(?:a|gallery)/(\w+)'
     - true
     - '<blockquote class="imgur-embed-pub" lang="en" data-id="a/<<1>>"><a href="<<URL>>">View post on imgur.com</a></blockquote><script async src=s.imgur.com/min/embed.js" charset="utf-8"></script>'
 magicTagADefaultClass: [ iframely ]
+hackIframely: false
 ```
 
 ## Acknowledge
