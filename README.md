@@ -17,16 +17,16 @@ NodeBB Plugin for macros, format, embeding.
 ![Imgur gallery](http://i.imgur.com/HxvheyR.jpg)
 * If you put any link in MagicBlock then MagicBlock will take care How show it With full customization.
 * image, imgur gallery are built in, and you can add more or override them.
-* Support iframely( Enable iframely only in `{{..}}` )  We have three options.
-  1.[ With modified iframely plugin](https://github.com/qgp9/nodebb-plugin-iframely)  
+* Support *iFramely*( Enable iFramely only in `{{..}}` )  We have three options.
+  * **Option 1)** [ With modified iframely plugin](https://github.com/qgp9/nodebb-plugin-iframely)  
     * set `magicTagADefaultClass: [ iframely ]` in MagicBlock admin UI
     * remove original iframely plugin
     * install the modified iframely plugin manualy from github.
     * set `iframely Class` to `iframely` in modified iframely admin UI
-  2. Client side load : this doesn't implemented yet until somebody wants :)
-  3. With an official iframely plugin. ( **RECOMENDED** )
-    * set `hackIframely: true` in YAML. ( see example of configuratons )
-    * That's it. As see from the name( hackIframely ), it's somewhat tricky but will be stable for a while.
+  * **Option 2)** Client side load : this doesn't implemented yet until somebody wants :)
+  * **Option 3)** With an official iframely plugin. ( **RECOMENDED** )
+    * set `hackIframely: true` in YAML. ( Of course, you need nodebb-plugin-iframely installed )
+    * That's it.
 
 ### AttrString
 `{{.class1.class2#color1#color2 BODY }}` 
