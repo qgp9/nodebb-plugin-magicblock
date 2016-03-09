@@ -29,13 +29,16 @@ I would like to control this with `{{ }}` but no way before modify nodebb-plugin
 ```
 ![Coloring](http://i.imgur.com/awpTBc0.jpg)
 
-### Class
+#### Class
 ```
 {{.class1 [link](http://example.com)}}` will become `<a href="http://example.com" class="class1">link</a>
 ```
-### Wraping with `<span>` or `<div>`
+* YES, class can make things messy, may be too much, usually useless BUT it's disabled by default. Solved!! :)
+
+#### Wraping with `<span>` or `<div>`
 * `<div>` : If an AttrString is ended with double colons (`::`), followed text will be wraped by `<div>`
 * `<span>` : If an AttrString is ended with a colon (`:`), followed text will be wraped by `<span>`
+* These are usually too much also, just turn it off !! ( by default )
 ```
 {{.cls1#red:: Any text or link}} will become <div class="cls" style="color:red;">Any text or link</div>
 {{.cls1#red: Any text or link}} will become <span class="cls" style="color:red;">Any text or link</span>
@@ -50,6 +53,9 @@ I would like to control this with `{{ }}` but no way before modify nodebb-plugin
 {{.cls1#red ![txt](url)}} will become <img src="url" alt="txt" class="cls" style="color:red;">
 {{.cls1#red  text}} will become <span class="cls" style="color:red;">text</span>
 ```
+#### And,,
+* Except #color, this AttrString can easily be too much. Recently I played wiki engins and I may be infected by wiki syntax and macros. Actually, I also plan to split magicblock as a standalone module from the nodeBB plugin, and they will be useful in other project ( At least for mine ).
+
 ### Macros
 * A forum admin can add custom macros via admin UI
 * examples ( built in )
@@ -78,10 +84,11 @@ Currently single YAML string is only supported.
 ```
 ---
 attrStrAllowClass: false
-attrStrAllowColor: false
+attrStrAllowColor: true
 attrStrAllowColon: true
 attrStrArrowTwoColon: false
 macros:
+  br(0): '<br/>'
   ALERT(1): '<div class="alert alert-<<1>>"><<BODY>></div>'
   ALERT(0): '<div class="alert alert-warning"><<BODY>></div>'
   PANEL(1): '<div class="panel panel-<<1>>"><div class="panel-body"><<BODY>></div></div>'
@@ -96,3 +103,4 @@ magicTagADefaultClass: [ iframely ]
 
 ## Acknowledge
 * This plugin is based on [nodebb-mega-colors](https://github.com/MegaGM/nodebb-plugin-mega-colors)
+* Thanks to frissdiegurke for a lot of comments and guiding.
