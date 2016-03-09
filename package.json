@@ -1,6 +1,6 @@
 {
   "name": "nodebb-plugin-magicblock",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "nbbpm": {
     "compatibility": "^1.0.0"
   },
