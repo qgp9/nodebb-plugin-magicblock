@@ -104,7 +104,7 @@ macros:
   PANEL(2): '<div class="panel panel-<<1>>"><div class="panel-heading"><<2>></div><div class="panel-body"><<BODY>></div></div>'
 magicTagA:
   - [ '.*(jpg|png|gif|svg)$' , true , '<img src="<<URL>>">' ]
-  - - '^(?:http:)?\\/\\/imgur.com/a/(w+)'
+  - - '^(?:http:)?\/\/imgur.com/a/(\w+)'
     - true
     - '<blockquote class="imgur-embed-pub" lang="en" data-id="a/<<1>>"><a href="<<URL>>">View post on imgur.com</a></blockquote><script async src=s.imgur.com/min/embed.js" charset="utf-8"></script>'
 magicTagADefaultClass: [ iframely ]
