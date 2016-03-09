@@ -68,6 +68,13 @@ I would like to control this with `{{ }}` but no way before modify nodebb-plugin
 ```
 ![Macros](http://i.imgur.com/e64NYuT.jpg)
 
+### Nested Block
+MagicBlock also support nested blocks. Always innder block will be manipulated first. 
+```
+{{ALERT: These are {{#blue blue letters}} In the Alert Box}}
+{{ALERT: This is {{ALERT(info): an Another Alert Box}} in the Alert Box }}
+```
+
 ## Installation
 ```
 npm install nodebb-plugin-magicblock
